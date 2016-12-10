@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+//import App from './App';
+import ClickCounter from './ClickCounter';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <ClickCounter/>,
   document.getElementById('root')
 );
