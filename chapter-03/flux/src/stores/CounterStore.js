@@ -12,11 +12,6 @@ const counterValues = {
 
 
 const CounterStore = Object.assign({}, EventEmitter.prototype, {
-  _foo: 'bar',
-  foo: () => {
-    return this._foo;
-  },
-
   getCounterValues: function() {
     return counterValues;
   },
