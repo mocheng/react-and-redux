@@ -12,22 +12,32 @@ class Counter extends Component {
   constructor(props) {
     super(props);
 
+    this.onChange = this.onChange.bind(this);
     this.onClickIncrementButton = this.onClickIncrementButton.bind(this);
     this.onClickDecrementButton = this.onClickDecrementButton.bind(this);
 
     this.state = {
-      count: CounterStore.counterValues[props.caption]
+      count: CounterStore.getCounterValues()[props.caption]
     }
-
-    CounterStore.on('changed', () => {
-      this.setState({count: CounterStore.counterValues[this.props.caption]});
-    });
 
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return (nextProps.caption !== this.props.caption) ||
            (nextState.count !== this.state.count);
+  }
+
+  componentDidMount() {
+    CounterStore.addChangeListener(this.onChange);
+  }
+
+  componentWillUnmount() {
+    CounterStore.removeChangeListener(this.onChange);
+  }
+
+  onChange() {
+    const newCount = CounterStore.getCounterValues()[this.props.caption];
+    this.setState({count: newCount});
   }
 
   onClickIncrementButton() {

@@ -1,27 +1,48 @@
 import AppDispatcher from '../AppDispatcher.js';
 import * as ActionTypes from '../ActionTypes.js';
-import EventEmitter from 'events';
+import {EventEmitter} from 'events';
 
-const CounterStore = new EventEmitter();
+const CHANGE_EVENT = 'changed';
 
-CounterStore.counterValues = {
+const counterValues = {
   'First': 0,
   'Second': 10,
   'Third': 30
 };
 
-function onDispatch(action) {
-  if (action.type === ActionTypes.INCREMENT) {
-    this.counterValues[action.counterCaption] ++;
-    this.emit('changed');
-  } else if (action.type === ActionTypes.DECREMENT) {
-    this.counterValues[action.counterCaption] --;
-    this.emit('changed');
+
+const CounterStore = Object.assign({}, EventEmitter.prototype, {
+  _foo: 'bar',
+  foo: () => {
+    return this._foo;
+  },
+
+  getCounterValues: function() {
+    return counterValues;
+  },
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
   }
-}
 
-CounterStore.onDispatch = onDispatch.bind(CounterStore);
+});
 
-CounterStore.dispatchToken = AppDispatcher.register(CounterStore.onDispatch);
+CounterStore.dispatchToken = AppDispatcher.register((action) => {
+  if (action.type === ActionTypes.INCREMENT) {
+    counterValues[action.counterCaption] ++;
+    CounterStore.emitChange();
+  } else if (action.type === ActionTypes.DECREMENT) {
+    counterValues[action.counterCaption] --;
+    CounterStore.emitChange();
+  }
+});
 
 export default CounterStore;

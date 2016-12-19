@@ -8,12 +8,12 @@ class Summary extends Component {
     super(props);
 
     this.state = {
-      sum: SummaryStore.summary
+      sum: SummaryStore.getSummary()
     }
 
     SummaryStore.on('changed', () => {
       this.setState({
-        sum: SummaryStore.summary
+        sum: SummaryStore.getSummary()
       })
     })
 
