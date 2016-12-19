@@ -19,7 +19,6 @@ class Counter extends Component {
     this.state = {
       count: CounterStore.getCounterValues()[props.caption]
     }
-
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -61,12 +60,7 @@ class Counter extends Component {
 }
 
 Counter.propTypes = {
-  caption: PropTypes.string.isRequired,
-  onUpdate: PropTypes.func
-};
-
-Counter.defaultProps = {
-  onUpdate: f => f //什么都不做的函数
+  caption: PropTypes.string.isRequired
 };
 
 export default Counter;
