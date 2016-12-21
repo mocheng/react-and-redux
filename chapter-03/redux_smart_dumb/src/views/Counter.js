@@ -14,6 +14,15 @@ class Counter extends Component {
     this.onIncrement = this.onIncrement.bind(this);
     this.onDecrement = this.onDecrement.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.getOwnState = this.getOwnState.bind(this);
+
+    this.state = this.getOwnState();
+  }
+
+  getOwnState() {
+    return {
+      value: store.getState()[this.props.caption]
+    };
   }
 
   onIncrement() {
@@ -25,7 +34,12 @@ class Counter extends Component {
   }
 
   onChange() {
-    this.forceUpdate();
+    this.setState(this.getOwnState());
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (nextProps.caption !== this.props.caption) ||
+      (nextState.value !== this.state.value);
   }
 
   componentDidMount() {
@@ -37,8 +51,7 @@ class Counter extends Component {
   }
 
   render() {
-    const state = store.getState();
-    const value = state[this.props.caption];
+    const value = this.state.value;
     const {caption} = this.props;
 
     return (
