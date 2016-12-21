@@ -1,13 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 
-class Summary extends Component {
-
-  render() {
-    return (
-      <div>Total Count: {this.props.value}</div>
-    );
-  }
+function Summary({value}) {
+  return (
+    <div>Total Count: {value}</div>
+  );
 }
 
 Summary.PropTypes = {

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import * as Actions from '../Actions.js';
 import {connect} from 'react-redux';
 
@@ -6,18 +6,14 @@ const buttonStyle = {
   margin: '10px'
 };
 
-class Counter extends Component {
-
-  render() {
-    const {caption, onIncrement, onDecrement, value} = this.props;
-    return (
-      <div>
-        <button style={buttonStyle} onClick={onIncrement}>+</button>
-        <button style={buttonStyle} onClick={onDecrement}>-</button>
-        <span>{caption} count: {value}</span>
-      </div>
-    );
-  }
+function Counter({caption, onIncrement, onDecrement, value}) {
+  return (
+    <div>
+      <button style={buttonStyle} onClick={onIncrement}>+</button>
+      <button style={buttonStyle} onClick={onDecrement}>-</button>
+      <span>{caption} count: {value}</span>
+    </div>
+  );
 }
 
 Counter.propTypes = {
