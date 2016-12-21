@@ -7,10 +7,28 @@ class Summary extends Component {
     super(props);
 
     this.onChange = this.onChange.bind(this);
+
+    this.state = this.getOwnState();
   }
 
   onChange() {
-    this.forceUpdate();
+    this.setState(this.getOwnState());
+  }
+
+  getOwnState() {
+    const state = store.getState();
+    let sum = 0;
+    for (const key in state) {
+      if (state.hasOwnProperty(key)) {
+        sum += state[key];
+      }
+    }
+
+    return { sum: sum };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.sum !== this.state.sum;
   }
 
   componentDidMount() {
@@ -22,14 +40,7 @@ class Summary extends Component {
   }
 
   render() {
-    const state = store.getState();
-    let sum = 0;
-    for (const key in state) {
-      if (state.hasOwnProperty(key)) {
-        sum += state[key];
-      }
-    }
-
+    const sum = this.state.sum;
     return (
       <div>Total Count: {sum}</div>
     );
