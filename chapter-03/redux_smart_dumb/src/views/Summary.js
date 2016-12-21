@@ -1,8 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import store from '../Store.js';
 
 class Summary extends Component {
+  render() {
+    const sum = this.state.sum;
+    return (
+      <div>Total Count: {sum}</div>
+    );
+  }
+}
+
+Summary.propTypes = {
+  sum: PropTypes.number.isRequired
+};
+
+
+class SummaryContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -47,7 +61,6 @@ class Summary extends Component {
   }
 }
 
-export default Summary;
-
+export default SummaryContainer;
 
 
