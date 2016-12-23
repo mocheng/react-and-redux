@@ -32,8 +32,6 @@ class CounterContainer extends Component {
   constructor(props, context) {
     super(props, context);
 
-    console.log('##', this.context);
-
     this.onIncrement = this.onIncrement.bind(this);
     this.onDecrement = this.onDecrement.bind(this);
     this.onChange = this.onChange.bind(this);

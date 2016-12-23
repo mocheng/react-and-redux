@@ -1,20 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Counter from './Counter.js';
 import Summary from './Summary.js';
-
-import store from '../Store.js';
 
 const style = {
   margin: '20px'
 };
 
 class ControlPanel extends Component {
-
-  getChildContext() {
-    return {
-      store: store
-    };
-  }
 
   render() {
     return (
@@ -28,10 +20,6 @@ class ControlPanel extends Component {
     );
   }
 }
-
-ControlPanel.childContextTypes = {
-  store: PropTypes.object
-};
 
 export default ControlPanel;
 
