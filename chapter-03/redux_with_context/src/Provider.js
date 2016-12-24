@@ -14,6 +14,10 @@ class Provider extends Component {
 
 }
 
+Provider.propTypes = {
+  store: PropTypes.object.isRequired
+}
+
 Provider.childContextTypes = {
   store: PropTypes.object
 };
