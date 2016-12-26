@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import TodoItem from './todoItem.js';
 import {toggleTodo} from '../actions.js';
+import {FilterTypes} from '../../constants.js';
 
 const TodoList = ({todos, onClickTodo}) => {
   return (
@@ -24,9 +25,22 @@ TodoList.propTypes = {
   todos: PropTypes.array.isRequired
 };
 
+const selectVisibileTodos = (todos, filter) => {
+  switch (filter) {
+    case FilterTypes.ALL:
+      return todos;
+    case FilterTypes.COMPLETED:
+      return todos.filter(item => item.completed);
+    case FilterTypes.UNCOMPPLETED:
+      return todos.filter(item => !item.completed);
+    default:
+      throw new Error('unsupported filter');
+  }
+}
+
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    todos: selectVisibileTodos(state.todos, state.filter)
   };
 }
 

@@ -1,11 +1,13 @@
 import {SET_FILTER} from './actionTypes.js';
+import {FilterTypes} from '../constants.js'
 
-export default (state = [], action) => {
+export default (state = FilterTypes.ALL, action) => {
+  console.log('#action', action);
   switch(action.type) {
     case SET_FILTER: {
-      return action.filterType;
+      return action.filter;
     }
-  default:
-    return state;
+    default:
+      return state;
   }
 }

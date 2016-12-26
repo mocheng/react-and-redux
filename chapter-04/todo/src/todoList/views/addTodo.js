@@ -34,7 +34,7 @@ class AddTodo extends Component {
         <form onSubmit={this.onSubmit}>
           <input ref={this.refInput} />
           <button type="submit">
-            Add Todo
+            添加
           </button>
         </form>
       </div>
