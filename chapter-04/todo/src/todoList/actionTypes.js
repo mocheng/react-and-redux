@@ -1,4 +1,2 @@
-export default {
-  ADD: 'TODO/ADD',
-  TOGGLE: 'TODO/TOGGLE'
-}
+export const ADD_TODO = 'TODO/ADD';
+export const TOGGLE_TODO =  'TODO/TOGGLE';

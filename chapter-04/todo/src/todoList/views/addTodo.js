@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-import actions from '../actions.js';
+import {addTodo} from '../actions.js';
 
 class AddTodo extends Component {
 
@@ -50,7 +50,7 @@ AddTodo.propTypes = {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAdd: (text) => {
-      dispatch(actions.addTodo(text));
+      dispatch(addTodo(text));
     }
   }
 };

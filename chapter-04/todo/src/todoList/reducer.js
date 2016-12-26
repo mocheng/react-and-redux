@@ -1,8 +1,8 @@
-import actionTypes from './actionTypes.js';
+import {ADD_TODO, TOGGLE_TODO}from './actionTypes.js';
 
 export default (state = [], action) => {
   switch(action.type) {
-    case actionTypes.ADD: {
+    case ADD_TODO: {
       return [
         ...state,
         {
@@ -12,7 +12,7 @@ export default (state = [], action) => {
         }
       ]
     }
-    case actionTypes.TOGGLE: {
+    case TOGGLE_TODO: {
       return state.map((todoItem) => {
         if (todoItem.id === action.id) {
            return {...todoItem, completed: !todoItem.completed};
@@ -21,7 +21,8 @@ export default (state = [], action) => {
         }
       })
     }
+    default: {
+      return state;
+    }
   }
-
-  return state;
 }

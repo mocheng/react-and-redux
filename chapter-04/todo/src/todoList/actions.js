@@ -1,18 +1,16 @@
-import actionTypes from './actionTypes.js';
+import {ADD_TODO, TOGGLE_TODO} from './actionTypes.js';
 
 let nextTodoId = 0;
 
-export default {
-  addTodo: (text) => ({
-    type: actionTypes.ADD,
-    completed: false,
-    id: nextTodoId++,
-    text: text
-  }),
+export const addTodo = (text) => ({
+  type: ADD_TODO,
+  completed: false,
+  id: nextTodoId ++,
+  text: text
+});
 
-  toggleTodo: (id) => ({
-    type: actionTypes.TOGGLE,
-    id: id
-  })
+export const toggleTodo = (id) => ({
+  type: TOGGLE_TODO,
+  id: id
+});
 
-}

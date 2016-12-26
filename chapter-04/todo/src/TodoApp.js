@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {view as TodoList} from './todoList/';
 import {view as Filter} from './filter/';
 
