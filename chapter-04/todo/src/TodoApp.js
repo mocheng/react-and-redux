@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import TodoList from './todoList/';
+import {view as TodoList} from './todoList/';
+import {view as Filter} from './filter/';
 
 function TodoApp() {
   return (
     <div>
-      TODO: build todo
+      <TodoList />
+      <Filter />
     </div>
   );
 }
