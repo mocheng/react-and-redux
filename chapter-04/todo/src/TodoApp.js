@@ -1,5 +1,5 @@
 import React from 'react';
-import {view as TodoList} from './todoList/';
+import {view as TodoList} from './todos/';
 import {view as Filter} from './filter/';
 
 function TodoApp() {
