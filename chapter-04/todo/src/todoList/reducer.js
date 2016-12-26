@@ -14,8 +14,10 @@ export default (state = [], action) => {
     }
     case actionTypes.TOGGLE: {
       return state.map((todoItem) => {
-        if (todoItem === action.id) {
+        if (todoItem.id === action.id) {
            return {...todoItem, completed: !todoItem.completed};
+        } else {
+          return todoItem;
         }
       })
     }
