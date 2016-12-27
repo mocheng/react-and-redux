@@ -2,7 +2,6 @@ import React from 'react';
 import Link from './link.js';
 import {FilterTypes} from '../../constants.js'
 
-
 const Filter = () => {
   return (
     <p>
