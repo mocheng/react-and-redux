@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import {setFilter} from '../actions.js';
 
 const Link = ({active, children, onClick}) => {
-  console.log(' #children', children);
-  console.log(' #active', active);
   if (active) {
     return <b>{children}</b>;
   } else {
@@ -26,7 +24,6 @@ Link.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('#state', state);
   return {
     active: state.filter === ownProps.filter
   }
