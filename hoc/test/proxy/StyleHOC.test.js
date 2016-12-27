@@ -1,7 +1,5 @@
 import React from 'react';
 import {mount} from 'enzyme';
-//import {expect} from 'chai-enzyme';
-import {expect} from 'enzyme';
 
 import StyleHOC from '../../src/proxy/StyleHOC.js';
 
@@ -14,14 +12,9 @@ describe('StyleHOC', () => {
 
   it('should get right style', () => {
     const NewComponent = StyleHOC(DemoComponent);
-    //const wrapper = mount(<NewComponent />);
-    const wrapper = mount(<div style={{display: 'block'}}>hello</div>);
+    const wrapper = mount(<NewComponent />);
 
-    console.log('####', wrapper.find('div').style);
-
-    //expect(wrapper).to.have.style('display'); //.equal('block');
-    //expect(wrapper).to.have.style('display').equal('block');
-    //expect(wrapper);
+    expect(wrapper.find('div').hasClass('styled')).toEqual(true);
   });
 });
 
