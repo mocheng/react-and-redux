@@ -8,7 +8,7 @@ const StyleHOC = (WrappedComponent) => {
   return class HOCComponent extends React.Component {
     render() {
       return (
-        <div className="styled" style={style}>
+        <div className="wrapper" style={style}>
           <WrappedComponent {...this.props}/>
         </div>
       );
