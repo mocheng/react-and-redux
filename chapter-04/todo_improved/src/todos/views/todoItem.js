@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-//import {connect} from 'react-redux';
-//import {toggleTodo} from '../actions.js';
+import {connect} from 'react-redux';
+import {toggleTodo} from '../actions.js';
 
 class TodoItem extends React.Component {
   constructor() {
@@ -32,4 +32,12 @@ TodoItem.propTypes = {
   text: PropTypes.string.isRequired
 }
 
-export default TodoItem;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onClick: (id) => {
+      dispatch(toggleTodo(ownProps.id));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(TodoItem);
