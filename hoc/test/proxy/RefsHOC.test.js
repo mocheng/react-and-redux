@@ -1,9 +1,9 @@
 import React from 'react';
 import {mount} from 'enzyme';
 
-import RefsHOC from '../../src/proxy/RefsHOC.js';
+import refsHOC from '../../src/proxy/refsHOC.js';
 
-describe('RefsHOC', () => {
+describe('refsHOC', () => {
   class DemoComponent extends React.Component {
     render() {
       return <div>do something</div>;
@@ -11,7 +11,7 @@ describe('RefsHOC', () => {
   }
 
   it('should get wrapped component by ref', () => {
-    const NewComponent = RefsHOC(DemoComponent);
+    const NewComponent = refsHOC(DemoComponent);
     const wrapper = mount(<NewComponent foo="bar"/>);
 
     expect(wrapper.instance()._root).toBeInstanceOf(DemoComponent);

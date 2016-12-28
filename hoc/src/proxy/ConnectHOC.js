@@ -2,7 +2,7 @@ import React from 'react';
 
 const doNothing = () => ({});
 
-const ConnectHOC =
+const connectHOC =
   (mapStateToProps=doNothing, mapDispatchToProps=doNothing) => (WrappedComponent) => {
 
   class HOCComponent extends React.Component {
@@ -45,6 +45,6 @@ const ConnectHOC =
   return HOCComponent;
 };
 
-export default ConnectHOC;
+export default connectHOC;
 
 

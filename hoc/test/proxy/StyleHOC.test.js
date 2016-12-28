@@ -8,9 +8,9 @@ chai.use(chaiEnzyme());
 const {expect} = chai;
 
 
-import StyleHOC from '../../src/proxy/StyleHOC.js';
+import styleHOC from '../../src/proxy/styleHOC.js';
 
-describe('StyleHOC', () => {
+describe('styleHOC', () => {
 
   class DemoComponent extends React.Component {
     render() {
@@ -19,7 +19,7 @@ describe('StyleHOC', () => {
   }
 
   it('should get right style', () => {
-    const NewComponent = StyleHOC(DemoComponent);
+    const NewComponent = styleHOC(DemoComponent);
     const wrapper = mount(<NewComponent />);
 
     expect(wrapper.find('div')).to.have.style('display');

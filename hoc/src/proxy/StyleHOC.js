@@ -4,7 +4,7 @@ const style = {
   display: 'block'
 };
 
-const StyleHOC = (WrappedComponent) => {
+const styleHOC = (WrappedComponent) => {
   return class HOCComponent extends React.Component {
     render() {
       return (
@@ -16,6 +16,6 @@ const StyleHOC = (WrappedComponent) => {
   };
 };
 
-export default StyleHOC;
+export default styleHOC;
 
 

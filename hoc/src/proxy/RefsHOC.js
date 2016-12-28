@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RefsHOC = (WrappedComponent) => {
+const refsHOC = (WrappedComponent) => {
   return class HOCComponent extends React.Component {
     constructor() {
       super(...arguments);
@@ -19,4 +19,4 @@ const RefsHOC = (WrappedComponent) => {
   };
 };
 
-export default RefsHOC;
+export default refsHOC;

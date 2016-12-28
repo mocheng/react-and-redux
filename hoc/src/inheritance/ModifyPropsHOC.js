@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ModifyPropsHOC = (WrappedComponent) => {
+const modifyPropsHOC = (WrappedComponent) => {
   return class NewComponent extends WrappedComponent {
     render() {
       const elements = super.render();
@@ -15,4 +15,4 @@ const ModifyPropsHOC = (WrappedComponent) => {
   };
 };
 
-export default ModifyPropsHOC;
+export default modifyPropsHOC;

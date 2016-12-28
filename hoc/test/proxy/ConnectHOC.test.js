@@ -4,9 +4,9 @@ import {mount} from 'enzyme';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
-import ConnectHOC from '../../src/proxy/ConnectHOC.js';
+import connectHOC from '../../src/proxy/connectHOC.js';
 
-describe('ConnectHOC', () => {
+describe('connectHOC', () => {
   class DemoComponent extends React.Component {
     render() {
       return <div>anything</div>;
@@ -17,8 +17,8 @@ describe('ConnectHOC', () => {
     const mapState = (state) => ({
       foo: state.foo
     });
-    const Connector = ConnectHOC(mapState);
-    const Container = Connector(DemoComponent);
+    const connector = connectHOC(mapState);
+    const Container = connector(DemoComponent);
     const initialState = {foo: 'bar'};
     const store = createStore(f=>f, initialState);
     const wrapper = mount(

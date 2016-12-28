@@ -1,9 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import AddNewPropsHOC from '../../src/proxy/AddNewPropsHOC.js';
+import addNewPropsHOC from '../../src/proxy/addNewPropsHOC.js';
 
-describe('AddNewPropsHOC', () => {
+describe('addNewPropsHOC', () => {
 
   const DemoComponent = (props) => {
     return (
@@ -12,7 +12,7 @@ describe('AddNewPropsHOC', () => {
   };
 
   it('should pass new props to wrapped component', () => {
-    const NewComponent = AddNewPropsHOC(DemoComponent, {foo: 'bar'});
+    const NewComponent = addNewPropsHOC(DemoComponent, {foo: 'bar'});
     const wrapper = shallow(<NewComponent />);
     const expectedComponent = <DemoComponent foo="bar"/>
 
@@ -20,7 +20,7 @@ describe('AddNewPropsHOC', () => {
   });
 
   it('should only overrides given props', () => {
-    const NewComponent = AddNewPropsHOC(DemoComponent, {foo: 'bar'});
+    const NewComponent = addNewPropsHOC(DemoComponent, {foo: 'bar'});
     const wrapper = shallow(<NewComponent abc="def"/>);
     const expectedComponent = <DemoComponent abc="def" foo="bar"/>
 

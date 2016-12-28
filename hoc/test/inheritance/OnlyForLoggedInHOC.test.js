@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 
-import OnlyForLoggedinHOC from '../../src/inheritance/OnlyForLoggedinHOC.js';
+import onlyForLoggedinHOC from '../../src/inheritance/onlyForLoggedinHOC.js';
 
 describe('RefsHOC', () => {
   class DemoComponent extends React.Component {
@@ -10,7 +10,7 @@ describe('RefsHOC', () => {
     }
   }
 
-  const NewComponent = OnlyForLoggedinHOC(DemoComponent);
+  const NewComponent = onlyForLoggedinHOC(DemoComponent);
 
   it('should render inner component if loggedIn', () => {
     const wrapper = mount(<NewComponent loggedIn="sample"/>);
