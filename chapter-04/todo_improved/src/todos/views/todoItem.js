@@ -1,14 +1,30 @@
 import React, {PropTypes} from 'react';
+//import {connect} from 'react-redux';
+//import {toggleTodo} from '../actions.js';
 
-const TodoItem = ({onClick, completed, text }) => (
-  <li
-    style={{
-      textDecoration: completed ? 'line-through' : 'none'
-    }}
-  >
-    <label><input type="checkbox" checked={completed ? "checked" : ""} readOnly onClick={onClick} />{text}</label>
-  </li>
-)
+class TodoItem extends React.Component {
+  constructor() {
+    super(...arguments);
+
+    console.log('enter TodoItem constructor: ' + this.props.text);
+  }
+
+  render() {
+    const {onClick, completed, text } = this.props;
+
+    console.log('enter TodoItem render: ' + text);
+
+    return (
+      <li
+        style={{
+          textDecoration: completed ? 'line-through' : 'none'
+        }}
+      >
+        <label><input type="checkbox" checked={completed ? "checked" : ""} readOnly onClick={onClick} />{text}</label>
+      </li>
+    );
+  };
+}
 
 TodoItem.propTypes = {
   onClick: PropTypes.func.isRequired,
