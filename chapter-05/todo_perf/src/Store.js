@@ -23,4 +23,25 @@ const storeEnhancers = compose(
   (win && win.devToolsExtension) ? win.devToolsExtension() : (f) => f,
 );
 
-export default createStore(reducer, {}, storeEnhancers);
+const initialState = {
+  todos: [
+    {
+      id: 0,
+      text: 'First',
+      completed: true
+    },
+    {
+      id: 1,
+      text: 'Second',
+      completed: false
+    },
+    {
+      id: 2,
+      text: 'Third',
+      completed: true
+    }
+  ]
+
+}
+export default createStore(reducer, initialState, storeEnhancers);
+
