@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import TodoItem from './todoItem.js';
-import {toggleTodo} from '../actions.js';
 import {FilterTypes} from '../../constants.js';
 
 const TodoList = ({todos, onClickTodo}) => {
@@ -11,9 +10,9 @@ const TodoList = ({todos, onClickTodo}) => {
       todos.map((item) => (
         <TodoItem
           key={item.id}
+          id={item.id}
           text={item.text}
           completed={item.completed}
-          onClick={() => onClickTodo(item.id)}
         />
         ))
     }
@@ -44,13 +43,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onClickTodo: (id) => {
-      dispatch(toggleTodo(id));
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
-
+export default connect(mapStateToProps)(TodoList);
