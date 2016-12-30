@@ -3,6 +3,13 @@ import React from 'react';
 const doNothing = () => ({});
 
 function connect(mapStateToProps=doNothing, mapDispatchToProps=doNothing) {
+
+  function getDisplayName(WrappedComponent) {
+    return WrappedComponent.displayName ||
+      WrappedComponent.name ||
+      'Component';
+  }
+
   return function(WrappedComponent) {
     class HOCComponent extends React.Component {
       constructor() {
@@ -13,6 +20,8 @@ function connect(mapStateToProps=doNothing, mapDispatchToProps=doNothing) {
         this.store = {};
       }
 
+      /*
+      //TODO: make a workable shouldComponentUpdate
       shouldComponentUpdate(nextProps, nextState) {
         for (const propType in nextProps) {
           if (nextProps.hasOwnProperty(propType)) {
@@ -32,6 +41,7 @@ function connect(mapStateToProps=doNothing, mapDispatchToProps=doNothing) {
 
         return false;
       }
+      */
 
       componentDidMount() {
         this.context.store.subscribe(this.onChange);
@@ -49,8 +59,8 @@ function connect(mapStateToProps=doNothing, mapDispatchToProps=doNothing) {
         const store = this.context.store;
         const newProps = {
           ...this.props,
-          ...mapStateToProps(store.getState()),
-          ...mapDispatchToProps(store.dispatch)
+          ...mapStateToProps(store.getState(), this.props),
+          ...mapDispatchToProps(store.dispatch, this.props)
         }
 
         return <WrappedComponent {...newProps} />;
@@ -60,6 +70,8 @@ function connect(mapStateToProps=doNothing, mapDispatchToProps=doNothing) {
     HOCComponent.contextTypes = {
       store: React.PropTypes.object
     }
+
+    HOCComponent.displayName = `Connect(${getDisplayName(WrappedComponent)})`;
 
     return HOCComponent;
   };

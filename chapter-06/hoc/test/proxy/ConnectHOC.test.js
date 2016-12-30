@@ -31,6 +31,8 @@ describe('connectHOC', () => {
       foo: 'bar'
     });
 
+    expect(Container.displayName).toEqual('Connect(DemoComponent)');
+
   });
 
 });
