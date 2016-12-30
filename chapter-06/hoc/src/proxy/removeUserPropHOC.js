@@ -1,10 +1,10 @@
 import React from 'react';
 
-function removeIdPropHOC(WrappedComponent) {
+function removeUserProp(WrappedComponent) {
   return function newRender(props) {
     const {user, ...otherProps} = props;
     return <WrappedComponent {...otherProps} />
   }
 }
 
-export default removeIdPropHOC;
+export default removeUserProp;

@@ -32,6 +32,7 @@ describe('connectHOC', () => {
     });
 
   });
+
 });
 
 
