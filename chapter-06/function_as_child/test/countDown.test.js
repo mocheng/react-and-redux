@@ -2,7 +2,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 import {spy} from 'sinon';
 
-import CountDown from '../src/countDown.js';
+import CountDown from '../src/CountDown.js';
 
 describe('CountDown', () => {
   it('should count down', (done) => {
