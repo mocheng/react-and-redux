@@ -1,0 +1,24 @@
+{
+  "name": "todo",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
+    "enzyme": "^2.7.0",
+    "react-addons-test-utils": "^15.4.1",
+    "react-redux": "^5.0.1",
+    "react-scripts": "0.8.4",
+    "redux": "^3.6.0"
+  },
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^5.0.1",
+    "redux": "^3.6.0",
+    "sinon": "^1.17.6"
+  },
+  "scripts": {
+    "test": "react-scripts test --env=jsdom"
+  }
+}
