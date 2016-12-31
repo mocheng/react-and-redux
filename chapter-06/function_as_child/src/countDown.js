@@ -33,7 +33,8 @@ class CountDown extends React.Component {
 }
 
 CountDown.propTypes = {
-  children: React.PropTypes.func.isRequired
+  children: React.PropTypes.func.isRequired,
+  startCount: React.PropTypes.number.isRequired
 }
 
 export default CountDown;
