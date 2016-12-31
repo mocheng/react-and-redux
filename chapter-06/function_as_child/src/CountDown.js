@@ -8,6 +8,10 @@ class CountDown extends React.Component {
     this.state = {count: this.props.startCount};
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.count !== this.state.count;
+  }
+
   componentDidMount() {
     this.intervalHandle = setInterval(() => {
       const newCount = this.state.count - 1;
