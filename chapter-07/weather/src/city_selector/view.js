@@ -5,8 +5,6 @@ import {CITY_CODES} from '../constants.js';
 import {actions as weatherActions} from '../weather/';
 import {selectCity} from './actions.js';
 
-console.log('#weatherActions', weatherActions)
-
 class CitySelector extends React.Component {
   constructor() {
     super(...arguments);

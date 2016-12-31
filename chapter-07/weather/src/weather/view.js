@@ -1,20 +1,30 @@
 import React, {PropTypes} from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import * as Status from './status.js';
 
-const Weather = ({cityName, weather, lowestTemp, highestTemp}) => {
-  console.log('enter render');
-  if (!cityName) {
-    return <div>...</div>;
+const Weather = ({status, cityName, weather, lowestTemp, highestTemp}) => {
+  switch (status) {
+    case Status.LOADING: {
+      return <div>天气信息请求中...</div>;
+    }
+    case Status.SUCCESS: {
+      return (
+        <div>
+          {cityName} {weather} 最低气温 {lowestTemp} 最高气温 {highestTemp}
+        </div>
+      )
+    }
+    case Status.FAILURE: {
+      return <div>天气信息装载失败</div> 
+    }
+    default: {
+      throw new Error('unexpected status ' + status);
+    }
   }
-
-  return (
-    <div>
-      {cityName} {weather} 最低气温 {lowestTemp} 最高气温 {highestTemp}
-    </div>
-  )
 }
 
 Weather.propTypes = {
+  status: PropTypes.string.isRequired,
   cityName: PropTypes.string,
   weather: PropTypes.string,
   lowestTemp: PropTypes.string,
@@ -23,8 +33,9 @@ Weather.propTypes = {
 
 const mapStateTopProps = (state) => {
   const weatherData = state.weather;
-  console.log('#weatherData', weatherData)
+
   return {
+    status: weatherData.status,
     cityName: weatherData.city,
     weather: weatherData.weather,
     lowestTemp: weatherData.temp1,
