@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 import {CITY_CODES} from '../constants.js';
 import {actions as weatherActions} from '../weather/';
-import {selectCity} from './actions.js';
 
 class CitySelector extends React.Component {
   constructor() {
@@ -43,7 +42,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSelectCity: (cityCode) => {
       dispatch(weatherActions.fetchWeather(cityCode));
-      dispatch(selectCity(cityCode))
     }
   }
 };
