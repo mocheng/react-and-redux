@@ -9,14 +9,13 @@ class CountDown extends React.Component {
   }
 
   componentDidMount() {
-    var that = this;
-    this.intervalHandle = setInterval(function() {
-
-      const newCount = that.state.count - 1;
+    this.intervalHandle = setInterval(() => {
+      const newCount = this.state.count - 1;
       if (newCount >= 0) {
-        that.setState({count: newCount});
+        this.setState({count: newCount});
       } else {
-        window.clearInterval(that.intervalHandle);
+        window.clearInterval(this.intervalHandle);
+        this.intervalHandle = null;
       }
     }, 1000);
   }
@@ -24,6 +23,7 @@ class CountDown extends React.Component {
   componentWillUnmount() {
     if (this.intervalHandle) {
       window.clearInterval(this.intervalHandle);
+      this.intervalHandle = null;
     }
   }
 
