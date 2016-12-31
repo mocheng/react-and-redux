@@ -1,5 +1,5 @@
-//import actions from './actions.js';
-//import reducer from './reducer.js';
-//import view from './views/todos.js';
+import actions from './actions.js';
+import reducer from './reducer.js';
+import view from './view.js';
 
-//export {actions, reducer, view};
+export {actions, reducer, view};
