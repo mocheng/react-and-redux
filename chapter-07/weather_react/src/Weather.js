@@ -1,5 +1,6 @@
 import React from 'react';
 
+//TODO: change to your city code according to http://www.weather.com.cn/
 const cityCode = 101010100;
 
 class Weather extends React.Component {
