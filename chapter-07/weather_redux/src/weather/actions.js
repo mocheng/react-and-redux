@@ -28,7 +28,7 @@ export const fetchWeather = (cityCode) => {
       response.json().then((responseJson) => {
         dispatch(fetchWeatherSuccess(responseJson.weatherinfo));
       }).catch((error) => {
-        throw new Error('Invalid json response: ' + error)
+        dispatch(fetchWeatherFailure(error));
       });
     }).catch((error) => {
       dispatch(fetchWeatherFailure(error));
