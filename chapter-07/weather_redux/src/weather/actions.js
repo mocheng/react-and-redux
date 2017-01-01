@@ -20,9 +20,7 @@ export const fetchWeather = (cityCode) => {
 
     dispatch(fetchWeatherStarted())
 
-    fetch(apiUrl, {
-       mode: 'cors'
-    }).then((response) => {
+    fetch(apiUrl).then((response) => {
       if (response.status !== 200) {
         throw new Error('Fail to get response with status ' + response.status);
       }
