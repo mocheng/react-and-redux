@@ -4,9 +4,9 @@ export const fetchWeatherStarted = () => ({
   type: FETCH_STARTED
 });
 
-export const fetchWeatherSuccess = (payload) => ({
+export const fetchWeatherSuccess = (result) => ({
   type: FETCH_SUCCESS,
-  payload
+  result
 })
 
 export const fetchWeatherFailure = (error) => ({
