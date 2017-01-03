@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {toggleTodo} from '../actions.js';
 
+
 class TodoItem extends React.Component {
   constructor() {
     super(...arguments);

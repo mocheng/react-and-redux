@@ -3,9 +3,13 @@ import {connect} from 'react-redux';
 import TodoItem from './todoItem.js';
 import {FilterTypes} from '../../constants.js';
 
+import TransitionGroup from 'react-addons-css-transition-group';
+import './todoItem.css';
+
 const TodoList = ({todos, onClickTodo}) => {
   return (
     <ul>
+      <TransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
     {
       todos.map((item) => (
         <TodoItem
@@ -16,6 +20,7 @@ const TodoList = ({todos, onClickTodo}) => {
         />
         ))
     }
+      </TransitionGroup>
     </ul>
   );
 };
