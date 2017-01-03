@@ -32,16 +32,18 @@ describe('advanced promise middleware', () => {
 
     it('should dispatch resolved result if promise action is fulfilled', () => {
       const result = {type: 'mock', payload: 123}
-      const promiseAction = Promise.resolve(result);
-      promiseAction.types = [PENDING, SUCCESS, FAILURE];
-      promiseAction.foo = 'bar';
+      const promiseAction = {
+        promise : Promise.resolve(result),
+        types : [PENDING, SUCCESS, FAILURE],
+        foo : 'bar'
+      };
 
       const nextFunc = spy();
       const actionHandler = nextHandler(nextFunc);
 
       actionHandler(promiseAction);
 
-      return promiseAction.then((result) => {
+      return promiseAction.promise.then((result) => {
         expect(nextFunc.called).toBe(false);
         expect(doDispatch.callCount).toBe(2);
         expect(doDispatch.firstCall.calledWith({type: PENDING, foo: 'bar'})).toBe(true);
@@ -51,16 +53,18 @@ describe('advanced promise middleware', () => {
 
     it('should dispatch error if promise action is rejected', () => {
       const error = 'Sample Error';
-      const promiseAction = Promise.reject(error);
-      promiseAction.types = [PENDING, SUCCESS, FAILURE];
-      promiseAction.foo = 'bar';
+      const promiseAction = {
+        promise : Promise.reject(error),
+        types : [PENDING, SUCCESS, FAILURE],
+        foo : 'bar'
+      };
 
       const nextFunc = spy();
       const actionHandler = nextHandler(nextFunc);
 
       actionHandler(promiseAction);
 
-      return promiseAction.catch((result) => {
+      return promiseAction.promise.catch((result) => {
         expect(nextFunc.called).toBe(false);
         expect(doDispatch.callCount).toBe(2);
         expect(doDispatch.firstCall.calledWith({type: PENDING, foo: 'bar'})).toBe(true);

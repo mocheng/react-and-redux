@@ -6,19 +6,15 @@ function isPromise(obj) {
 
 export default function promiseMiddleware({dispatch}) {
   return (next) => (action) => {
-    if (!isPromise(action)) {
+    const {types, promise, ...rest} = action;
+    if (!isPromise(promise) || !(action.types && action.types.length === 3)) {
       return next(action);
     }
 
-    if (!(action.types && action.types.length === 3)) {
-      return;
-    }
-
-    const {types, ...rest} = action;
     const [PENDING, DONE, FAIL] = types;
 
     dispatch({...rest, type: PENDING});
-    return action.then(
+    return action.promise.then(
       (result) => dispatch({...rest, result, type: DONE}),
       (error) => dispatch({...rest, error, type: FAIL})
     );
