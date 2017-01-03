@@ -3,20 +3,50 @@ import {connect} from 'react-redux';
 import TodoItem from './todoItem.js';
 import {FilterTypes} from '../../constants.js';
 
+import {spring, TransitionMotion} from 'react-motion';
+
+const willLeave = () => {
+  return {
+    height: spring(0),
+    opacity: spring(0)
+  };
+}
+
 const TodoList = ({todos, onClickTodo}) => {
-  return (
-    <ul>
-    {
-      todos.map((item) => (
-        <TodoItem
-          key={item.id}
-          id={item.id}
-          text={item.text}
-          completed={item.completed}
-        />
-        ))
+  const transitionStyles = todos.map(item => ({
+    key: item.id.toString(),
+    data: item,
+    style: {
+      height: 30,
+      opacity: 1
     }
-    </ul>
+  }));
+
+  return (
+    <TransitionMotion
+      willLeave={willLeave}
+      styles={transitionStyles}>
+      {
+        interpolatedStyles =>
+        <ul>
+          {
+            interpolatedStyles.map(config => {
+              const {data, style, key} = config;
+
+              console.log('#style', style);
+              const item = data;
+              return (<TodoItem
+                style={style}
+                key={key}
+                id={item.id}
+                text={item.text}
+                completed={item.completed}
+              />);
+            })
+          }
+        </ul>
+        }
+      </TransitionMotion>
   );
 };
 

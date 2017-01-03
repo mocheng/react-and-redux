@@ -10,13 +10,14 @@ class TodoItem extends React.Component {
   }
 
   render() {
-    const {onClick, completed, text } = this.props;
+    const {style, onClick, completed, text } = this.props;
 
     console.log('enter TodoItem render: ' + text);
 
     return (
       <li
         style={{
+          ...style,
           textDecoration: completed ? 'line-through' : 'none'
         }}
       >
@@ -29,6 +30,7 @@ class TodoItem extends React.Component {
 TodoItem.propTypes = {
   onClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
+  style: PropTypes.object.isRequired,
   text: PropTypes.string.isRequired
 }
 
