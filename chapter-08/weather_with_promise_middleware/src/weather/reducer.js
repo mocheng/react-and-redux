@@ -7,10 +7,10 @@ export default (state = {status: Status.LOADING}, action) => {
       return {status: Status.LOADING};
     }
     case FETCH_SUCCESS: {
-      return {...state, status: Status.SUCCESS, ...action.payload};
+      return {...state, status: Status.SUCCESS, ...action.result};
     }
     case FETCH_FAILURE: {
-      return {status: Status.FAILURE};
+      return {status: Status.FAILURE, error: action.error};
     }
     default: {
       return state;

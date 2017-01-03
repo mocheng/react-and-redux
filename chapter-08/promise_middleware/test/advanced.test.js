@@ -1,7 +1,6 @@
 import promiseMiddleware from '../src/advanced.js';
 import {spy} from 'sinon';
 
-
 describe('advanced promise middleware', () => {
   const [PENDING, SUCCESS, FAILURE] = [1, 2, 3];
   let doDispatch, doGetState, nextHandler;
