@@ -12,20 +12,32 @@ const willLeave = () => {
   };
 }
 
+const willEnter = () => {
+  console.log('#enter willEnter');
+  return {
+    height: 0,
+    opacity: 0
+  };
+};
+
 const TodoList = ({todos, onClickTodo}) => {
-  const transitionStyles = todos.map(item => ({
-    key: item.id.toString(),
-    data: item,
-    style: {
-      height: 30,
-      opacity: 1
-    }
-  }));
+  const styles = todos.map(item => {
+    return {
+      key: item.id.toString(),
+      data: item,
+      style: {
+        height: spring(30),
+        opacity: spring(1)
+      }
+    };
+  });
 
   return (
     <TransitionMotion
       willLeave={willLeave}
-      styles={transitionStyles}>
+      willEnter={willEnter}
+      styles={styles}
+    >
       {
         interpolatedStyles =>
         <ul>
@@ -33,7 +45,6 @@ const TodoList = ({todos, onClickTodo}) => {
             interpolatedStyles.map(config => {
               const {data, style, key} = config;
 
-              console.log('#style', style);
               const item = data;
               return (<TodoItem
                 style={style}
