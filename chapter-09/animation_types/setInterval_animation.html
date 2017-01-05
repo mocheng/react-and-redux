@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+#sample {
+  position: absolute;
+  background: red;
+  width: 100px;
+  height: 100px;
+}
+    </style>
+  </head>
+  <body>
+    <div id="sample" />
+    <script type="text/javascript">
+var animatedElement = document.getElementById("sample");
+var left = 0;
+var lastFrameTimestamp = +new Date();
+var timer;
+var ANIMATION_INTERVAL = 16;
+
+timer = setInterval(function() {
+  var now = +new Date();
+  var deltaTime = now - lastFrameTimestamp;
+  animatedElement.style.left = ( left += 10 * deltaTime / 16 ) + "px";
+  lastFrameTimestamp = now;
+  if ( left > 400 ) {
+    clearInterval(timer);
+  }
+}, ANIMATION_INTERVAL);
+
+    </script>
+  </body>
+</html>
