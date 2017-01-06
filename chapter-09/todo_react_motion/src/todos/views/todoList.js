@@ -26,7 +26,7 @@ const TodoList = ({todos, onClickTodo}) => {
       key: item.id.toString(),
       data: item,
       style: {
-        height: spring(30),
+        height: spring(60),
         opacity: spring(1)
       }
     };
@@ -40,10 +40,13 @@ const TodoList = ({todos, onClickTodo}) => {
     >
       {
         interpolatedStyles =>
-        <ul>
+        <ul className="todo-list">
           {
             interpolatedStyles.map(config => {
               const {data, style, key} = config;
+
+              console.log('#key', key);
+              console.log('#style', style);
 
               const item = data;
               return (<TodoItem

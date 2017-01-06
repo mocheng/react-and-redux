@@ -4,10 +4,10 @@ import {setFilter} from '../actions.js';
 
 const Link = ({active, children, onClick}) => {
   if (active) {
-    return <b>{children}</b>;
+    return <b className="filter selected">{children}</b>;
   } else {
     return (
-      <a href="#" onClick={(ev) => {
+      <a href="#" className="filter not-selected" onClick={(ev) => {
         ev.preventDefault();
         onClick();
       }}>

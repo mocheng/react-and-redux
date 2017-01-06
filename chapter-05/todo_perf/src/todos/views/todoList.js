@@ -5,7 +5,7 @@ import {FilterTypes} from '../../constants.js';
 
 const TodoList = ({todos, onClickTodo}) => {
   return (
-    <ul>
+    <ul className="todo-list">
     {
       todos.map((item) => (
         <TodoItem
