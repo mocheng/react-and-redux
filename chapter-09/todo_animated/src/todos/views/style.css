@@ -1,0 +1,90 @@
+.todos {
+  width: 500px;
+  font-size: 30px;
+}
+
+.add-todo {
+  position: relative;
+}
+
+.add-todo .new-todo {
+  display: block;
+  margin: 0 0 0 50px;
+  font-size: 30px;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.add-todo .add-btn {
+  font-size: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  font-size: 30px;
+}
+
+
+.todo-item {
+  position: relative;
+  height: 60px;
+  vertical-align: middle;
+}
+
+.todo-item .toggle {
+  height: 40px;
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.todo-item .toggle:after {
+  margin: 10px 0 0 0;
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+}
+
+.todo-item .toggle:checked:after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+}
+
+.todo-item .text {
+  margin: 0 0 0 50px;
+  height: 40px;
+}
+
+.todo-item .remove {
+  border: 0;
+  background: 0;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  color: #cc9a9a;
+  margin-bottom: 11px;
+  transition: color 0.2s ease-out;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.todo-item:hover .remove {
+  display: block
+}
+
+.todo-item .remove:hover {
+  color: #af5b5e;
+}
+
+
