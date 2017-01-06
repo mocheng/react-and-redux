@@ -1,17 +1,22 @@
 import React, {PropTypes} from 'react';
 
-const TodoItem = ({onClick, completed, text }) => (
+const TodoItem = ({onToggle, onRemove, completed, text }) => (
   <li
+    className="todo-item"
     style={{
       textDecoration: completed ? 'line-through' : 'none'
     }}
   >
-    <label><input type="checkbox" checked={completed ? "checked" : ""} readOnly onClick={onClick} />{text}</label>
+    <input className="toggle" type="checkbox" checked={completed ? "checked" : ""} readOnly onClick={onToggle} />
+    <label className="text">{text}</label>
+    <button className="remove" onClick={onRemove}>×</button>
   </li>
 )
 
+
 TodoItem.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired
 }
