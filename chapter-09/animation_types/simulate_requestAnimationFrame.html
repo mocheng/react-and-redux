@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+#sample {
+  position: absolute;
+  background: red;
+  width: 100px;
+  height: 100px;
+}
+    </style>
+  </head>
+  <body>
+    <div id="sample" />
+    <script type="text/javascript">
+
+var lastTimeStamp = new Date().getTime();
+function raf(fn) {
+  var currTimeStamp = new Date().getTime();
+  var delay  = Math.max(0, 16 - (currTimeStamp - lastTimeStamp));
+  var handle = setTimeout(function(){
+    fn(currTimeStamp);
+  }, delay);
+  lastTimeStamp = currTimeStamp;
+  return handle;
+}
+
+var left = 0;
+var animatedElement = document.getElementById("sample");
+var startTimestamp = new Date().getTime();
+function render(timestamp) {
+  left += (timestamp - startTimestamp) / 16;
+  animatedElement.style.left = left + 'px';
+  if (left < 400) {
+    raf(render);
+  }
+}
+
+raf(render);
+
+
+    </script>
+  </body>
+</html>

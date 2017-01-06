@@ -19,7 +19,8 @@ var timer;
 var ANIMATION_INTERVAL = 16;
 
 timer = setInterval(function() {
-  animatedElement.style.left = (left += 10) + "px";
+  left += 10;
+  animatedElement.style.left = left + "px";
   if ( left >= 400 ) {
     clearInterval(timer);
   }
