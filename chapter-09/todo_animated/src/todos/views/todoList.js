@@ -29,7 +29,7 @@ TodoList.propTypes = {
   todos: PropTypes.array.isRequired
 };
 
-const selectVisibileTodos = (todos, filter) => {
+const selectVisibleTodos = (todos, filter) => {
   switch (filter) {
     case FilterTypes.ALL:
       return todos;
@@ -44,7 +44,7 @@ const selectVisibileTodos = (todos, filter) => {
 
 const mapStateToProps = (state) => {
   return {
-    todos: selectVisibileTodos(state.todos, state.filter)
+    todos: selectVisibleTodos(state.todos, state.filter)
   };
 }
 
