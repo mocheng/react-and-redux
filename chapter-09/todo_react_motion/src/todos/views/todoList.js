@@ -13,14 +13,13 @@ const willLeave = () => {
 }
 
 const willEnter = () => {
-  console.log('#enter willEnter');
   return {
     height: 0,
     opacity: 0
   };
 };
 
-const TodoList = ({todos, onClickTodo}) => {
+const TodoList = ({todos}) => {
   const styles = todos.map(item => {
     return {
       key: item.id.toString(),
@@ -44,9 +43,6 @@ const TodoList = ({todos, onClickTodo}) => {
           {
             interpolatedStyles.map(config => {
               const {data, style, key} = config;
-
-              console.log('#key', key);
-              console.log('#style', style);
 
               const item = data;
               return (<TodoItem
