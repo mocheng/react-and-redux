@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-const TodoItem = ({onToggle, onRemove, completed, text }) => (
+const TodoItem = ({onToggle, onRemove, completed, text}) => (
   <li
     className="todo-item"
     style={{
