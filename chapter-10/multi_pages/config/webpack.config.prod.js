@@ -234,7 +234,9 @@ module.exports = {
     // having to parse `index.html`.
     new ManifestPlugin({
       fileName: 'asset-manifest.json'
-    })
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin('static/js/common.[chunkhash:8].js')
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
