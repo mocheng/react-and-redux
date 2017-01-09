@@ -3,10 +3,20 @@ const path = require('path');
 
 const app = express();
 
+const assetManifest = require(path.resolve(__dirname, '../build/asset-manifest.json'));
+
 app.use(express.static(path.resolve(__dirname, '../build')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../build/index.html'));
+  return res.render('app', {
+    title: 'Sample React App',
+    PUBLIC_URL: '/',
+    assetManifest: assetManifest
+  });
 });
+
+app.set('view engine', 'ejs');
+app.set('views', path.resolve(__dirname, 'views'));
+
 
 module.exports = app;
