@@ -47,6 +47,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "express": "^4.14.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0"
