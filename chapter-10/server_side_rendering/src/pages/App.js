@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {view as Navigation} from '../components/navigation';
+import {view as TopMenu} from '../components/TopMenu';
 
 const App = ({children}) => {
   return (
     <div>
-      <Navigation />
+      <TopMenu />
       <div>{children}</div>
     </div>
   );
