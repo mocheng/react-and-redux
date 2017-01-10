@@ -5,9 +5,9 @@ import {Provider} from 'react-redux';
 import {syncHistoryWithStore} from 'react-router-redux';
 
 import App from './pages/App.js';
-import Home from './pages/Home.js';
-import About from './pages/About.js';
-import NotFound from './pages/NotFound.js';
+//import Home from './pages/Home.js';
+//import About from './pages/About.js';
+//import NotFound from './pages/NotFound.js';
 import store from './Store.js';
 
 const createElement = (Component, props) => {
@@ -18,16 +18,34 @@ const createElement = (Component, props) => {
   );
 };
 
+const getHomePage = (location, callback) => {
+  require.ensure([], function(require) {
+    callback(null, require('./pages/Home.js').default);
+  }, 'home');
+};
+
+const getAboutPage = (location, callback) => {
+  require.ensure([], function(require) {
+    callback(null, require('./pages/About.js').default);
+  }, 'about');
+};
+
+const getNotFoundPage = (location, callback) => {
+  require.ensure([], function(require) {
+    callback(null, require('./pages/NotFound.js').default);
+  }, '404');
+};
+
 const history = syncHistoryWithStore(browserHistory, store);
 //const history = browserHistory;
 
 const Routes = () => (
   <Router history={history} createElement={createElement}>
     <Route path="/" component={App}>
-      <IndexRoute component={Home} />
-      <Route path="home" component={Home} />
-      <Route path="about" component={About} />
-      <Route path="*" component={NotFound} />
+      <IndexRoute getComponent={getHomePage} />
+      <Route path="home" getComponent={getHomePage} />
+      <Route path="about" getComponent={getAboutPage} />
+      <Route path="*" getComponent={getNotFoundPage} />
     </Route>
   </Router>
 );
