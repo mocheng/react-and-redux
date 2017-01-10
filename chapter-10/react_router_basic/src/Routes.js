@@ -1,19 +1,14 @@
 import React from 'react';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 
-import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
+import {syncHistoryWithStore} from 'react-router-redux';
 
 import App from './pages/App.js';
 import Home from './pages/Home.js';
 import About from './pages/About.js';
 import NotFound from './pages/NotFound.js';
-
-const store = createStore(
-  combineReducers({routing: routerReducer}),
-  {greetings: 'Hello'}
-);
+import store from './Store.js';
 
 const createElement = (Component, props) => {
   return (
@@ -24,6 +19,7 @@ const createElement = (Component, props) => {
 };
 
 const history = syncHistoryWithStore(browserHistory, store);
+//const history = browserHistory;
 
 const Routes = () => (
   <Router history={history} createElement={createElement}>
