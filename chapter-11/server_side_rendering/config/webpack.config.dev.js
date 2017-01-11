@@ -7,6 +7,8 @@ var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeMod
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
 
+var ManifestPlugin = require('webpack-manifest-plugin');
+
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -40,7 +42,10 @@ module.exports = {
     // the line below with these two lines if you prefer the stock client:
     // require.resolve('webpack-dev-server/client') + '?/',
     // require.resolve('webpack/hot/dev-server'),
-    require.resolve('react-dev-utils/webpackHotDevClient'),
+
+    //require.resolve('react-dev-utils/webpackHotDevClient'),
+
+    'webpack-hot-middleware/client',
     // We ship a few polyfills by default:
     require.resolve('./polyfills'),
     // Finally, this is your app's code:
@@ -60,7 +65,7 @@ module.exports = {
     filename: 'static/js/bundle.js',
 
     // chunk entry name
-    chunkFilename: '[name].chunk.js',
+    chunkFilename: 'static/js/[name].chunk.js',
 
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath
@@ -124,6 +129,11 @@ module.exports = {
         }
       },
       // Process JS with Babel.
+      {
+        test: /\.js$/,
+        include: paths.appSrc,
+        loader: 'react-hot'
+      },
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
@@ -190,8 +200,15 @@ module.exports = {
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env),
+
+    //new webpack.optimize.OccurenceOrderPlugin(),
+    //new webpack.optimize.OccurrenceOrderPlugin(),
+
     // This is necessary to emit hot updates (currently CSS only):
     new webpack.HotModuleReplacementPlugin(),
+
+    new webpack.NoErrorsPlugin(),
+
     // Watcher doesn't work well if you mistype casing in a path so we use
     // a plugin that prints an error when you attempt to do this.
     // See https://github.com/facebookincubator/create-react-app/issues/240
@@ -203,7 +220,13 @@ module.exports = {
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
 
     // enable chunked code splitting
-    new webpack.optimize.CommonsChunkPlugin('common.js')
+    new webpack.optimize.CommonsChunkPlugin('common', 'static/js/common.js'),
+
+    // generate manifest file
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json'
+    }),
+
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

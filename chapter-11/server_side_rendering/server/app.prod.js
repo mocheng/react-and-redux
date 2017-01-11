@@ -18,6 +18,4 @@ app.get('*', (req, res) => {
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, 'views'));
 
-console.log('#here');
-
 module.exports = app;
