@@ -18,19 +18,19 @@ const createElement = (Component, props) => {
   );
 };
 
-const getHomePage = (location, callback) => {
+const getHomePage = (nextState, callback) => {
   require.ensure([], function(require) {
     callback(null, require('./pages/Home.js').default);
   }, 'home');
 };
 
-const getAboutPage = (location, callback) => {
+const getAboutPage = (nextState, callback) => {
   require.ensure([], function(require) {
     callback(null, require('./pages/About.js').default);
   }, 'about');
 };
 
-const getNotFoundPage = (location, callback) => {
+const getNotFoundPage = (nextState, callback) => {
   require.ensure([], function(require) {
     callback(null, require('./pages/NotFound.js').default);
   }, '404');
