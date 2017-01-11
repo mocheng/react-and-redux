@@ -203,7 +203,7 @@ module.exports = {
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
 
     // enable chunked code splitting
-    new webpack.optimize.CommonsChunkPlugin('static/js/common.js')
+    new webpack.optimize.CommonsChunkPlugin('common', 'static/js/common.js')
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
