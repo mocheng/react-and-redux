@@ -8,6 +8,9 @@
   </head>
   <body>
     <div id="root"><%- appHtml %></div>
+    <script>
+      var DEHYDRATED_STATE = <%- dehydratedState %>
+    </script>
     <script src="<%= PUBLIC_URL + assetManifest['common.js'] %>"></script>
     <script src="<%= PUBLIC_URL + assetManifest['main.js'] %>"></script>
   </body>

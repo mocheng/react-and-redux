@@ -58,12 +58,12 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 const routes = (
   <Route path="/" component={App}>
-      <IndexRoute getComponent={getHomePage} />
-      <Route path="home" getComponent={getHomePage} />
-      <Route path="counter" getComponent={getCounterPage} />
-      <Route path="about" getComponent={getAboutPage} />
-      <Route path="*" getComponent={getNotFoundPage} />
-    </Route>
+    <IndexRoute getComponent={getHomePage} />
+    <Route path="home" getComponent={getHomePage} />
+    <Route path="counter" getComponent={getCounterPage} />
+    <Route path="about" getComponent={getAboutPage} />
+    <Route path="*" getComponent={getNotFoundPage} />
+  </Route>
 );
 
 

@@ -24,9 +24,7 @@ const configureStore = () => {
     (win && win.devToolsExtension) ? win.devToolsExtension() : (f) => f,
   );
 
-  const initialState = {
-  };
-  const store = createStore(reducer, initialState, storeEnhancers);
+  const store = createStore(reducer, {}, storeEnhancers);
   store._reducers = originalReducers;
 
   return store;

@@ -1,8 +1,9 @@
 import React from 'react';
+import {combineReducers} from 'redux';
 import ReactDOMServer from 'react-dom/server';
 import {Provider} from 'react-redux';
 import {match, RouterContext} from 'react-router';
-import routes from './Routes.server.js';
+import routes, {routeInitialState, routeReducer} from './Routes.server.js';
 
 import {configureStore} from '../src/Store.js';
 
@@ -13,7 +14,19 @@ function safeJSONstringify(obj) {
 function renderPage(req, res, renderProps, assetManifest) {
   const store = configureStore();
 
-  const appHtml = ReactDOMServer.renderToString(
+  const pathname = renderProps.location.pathname;
+  const state = store.getState();
+  store.reset(combineReducers({
+    ...store._reducers,
+    ...routeReducer[pathname]
+  }), {
+    ...state,
+    ...routeInitialState[pathname]
+  });
+
+
+  //const appHtml = ReactDOMServer.renderToString(
+  const appHtml = ReactDOMServer.renderToStaticMarkup(
     <Provider store={store}>
       <RouterContext {...renderProps} />
     </Provider>
