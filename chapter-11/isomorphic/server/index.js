@@ -1,3 +1,5 @@
+require('babel-register');
+
 const isProductionMode = (process.env.NODE_ENV === 'production');
 const app = isProductionMode ? require('./app.prod.js'): require('./app.dev.js');
 

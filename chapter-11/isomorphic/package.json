@@ -48,6 +48,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "babel-register": "^6.18.0",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
     "react": "^15.4.1",
@@ -62,6 +63,9 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "start:express": "NODE_ENV=development node server/index.js",
+    "start_prod:express": "NODE_ENV=production node server/index.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },

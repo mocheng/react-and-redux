@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const requestHandler = require('./requestHandler.js');
 
 const app = express();
 
@@ -8,11 +9,7 @@ const assetManifest = require(path.resolve(__dirname, '../build/asset-manifest.j
 app.use(express.static(path.resolve(__dirname, '../build')));
 
 app.get('*', (req, res) => {
-  return res.render('index', {
-    title: 'Sample React App',
-    PUBLIC_URL: '/',
-    assetManifest: assetManifest
-  });
+  return requestHandler(req, res, assetManifest);
 });
 
 app.set('view engine', 'ejs');

@@ -6,7 +6,9 @@ import {combineReducers} from 'redux';
 import {syncHistoryWithStore} from 'react-router-redux';
 
 import App from './pages/App.js';
-import store from './Store.js';
+import {configureStore} from './Store.js';
+
+const store = configureStore();
 
 const createElement = (Component, props) => {
   return (

@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const requestHandler = require('./requestHandler.js');
+
 const webpack = require('webpack');
 const webpackConfig = require('../config/webpack.config.dev.js');
 const compiler = webpack(webpackConfig);
@@ -19,6 +21,8 @@ function getAssetManifest() {
 
 const app = express();
 
+let assetManifest = null;
+
 app.use(express.static(path.resolve(__dirname, '../build')));
 
 app.use(webpackDevMiddleware);
@@ -29,13 +33,11 @@ app.use(require('webpack-hot-middleware')(compiler, {
 }));
 
 app.get('*', (req, res) => {
-  const assetManifest = getAssetManifest();
+  if (!assetManifest) {
+    assetManifest = getAssetManifest();
+  }
 
-  return res.render('index', {
-    title: 'Sample React App',
-    PUBLIC_URL: '/',
-    assetManifest: assetManifest
-  });
+  return requestHandler(req, res, assetManifest);
 });
 
 app.set('view engine', 'ejs');
