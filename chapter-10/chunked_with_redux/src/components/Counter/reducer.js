@@ -1,6 +1,6 @@
 import {INCREMENT, DECREMENT} from './actionTypes.js';
 
-export default (state, action) => {
+export default (state = {}, action) => {
   const {counterCaption} = action;
 
   switch (action.type) {

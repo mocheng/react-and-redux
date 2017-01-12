@@ -1,13 +1,19 @@
 import React from 'react';
-import {view as Counter} from '../components/Counter';
+import {view as Counter, stateKey, reducer} from '../components/Counter';
 
-const CounterPage = () => {
+const caption = "any";
+
+const page = () => {
   return (
     <div>
       <div>Counter</div>
-      <Counter caption="any"/>
+      <Counter value={0} caption={caption}/>
     </div>
   );
 };
 
-export default CounterPage;
+const initialState = {
+  [caption]: 100
+}
+
+export {page, reducer, initialState, stateKey};

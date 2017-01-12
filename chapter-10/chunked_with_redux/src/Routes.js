@@ -1,6 +1,7 @@
 import React from 'react';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
+import {combineReducers} from 'redux';
 
 import {syncHistoryWithStore} from 'react-router-redux';
 
@@ -29,7 +30,18 @@ const getAboutPage = (nextState, callback) => {
 
 const getCounterPage = (nextState, callback) => {
   require.ensure([], function(require) {
-    callback(null, require('./pages/CounterPage.js').default);
+    const {page, reducer, stateKey, initialState} = require('./pages/CounterPage.js');
+
+    const state = store.getState();
+    store.reset(combineReducers({
+      ...store._reducers,
+      counter: reducer
+    }), {
+      ...state,
+      [stateKey]: initialState
+    });
+
+    callback(null, page);
   }, 'counter');
 };
 

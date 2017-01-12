@@ -13,3 +13,4 @@ export const decrement = (counterCaption) => {
     counterCaption: counterCaption
   };
 };
+
