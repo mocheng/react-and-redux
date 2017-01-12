@@ -39,15 +39,22 @@ const getNotFoundPage = (nextState, callback) => {
 const history = syncHistoryWithStore(browserHistory, store);
 //const history = browserHistory;
 
-const Routes = () => (
-  <Router history={history} createElement={createElement}>
-    <Route path="/" component={App}>
+const routes = (
+  <Route path="/" component={App}>
       <IndexRoute getComponent={getHomePage} />
       <Route path="home" getComponent={getHomePage} />
       <Route path="about" getComponent={getAboutPage} />
       <Route path="*" getComponent={getNotFoundPage} />
     </Route>
+);
+
+
+const Routes = () => (
+  <Router history={history} createElement={createElement}>
+    {routes}
   </Router>
 );
 
 export default Routes;
+
+
