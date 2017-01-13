@@ -14,7 +14,7 @@ const END_POINT = process.env.HOST_NAME || 'localhost:9000';
 
 const initState = () => {
   return fetch(`http://${END_POINT}/api/count`).then(response => {
-    if (response.code !== 200) {
+    if (response.status !== 200) {
       throw new Error('Fail to fetch count');
     }
     return response.json();
