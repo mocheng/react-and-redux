@@ -12,7 +12,7 @@ export const selectVisibleTodos = createSelector(
         return todos;
       case FilterTypes.COMPLETED:
         return todos.filter(item => item.completed);
-      case FilterTypes.UNCOMPPLETED:
+      case FilterTypes.UNCOMPLETED:
         return todos.filter(item => !item.completed);
       default:
         throw new Error('unsupported filter');
