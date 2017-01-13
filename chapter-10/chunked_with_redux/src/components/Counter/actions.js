@@ -1,11 +1,9 @@
 import * as ActionTypes from './actionTypes.js';
 
-export const increment = (counterCaption) => ({
-  type: ActionTypes.INCREMENT,
-  counterCaption: counterCaption
+export const increment = () => ({
+  type: ActionTypes.INCREMENT
 });
 
-export const decrement = (counterCaption) => ({
-  type: ActionTypes.DECREMENT,
-  counterCaption: counterCaption
+export const decrement = () => ({
+  type: ActionTypes.DECREMENT
 });
