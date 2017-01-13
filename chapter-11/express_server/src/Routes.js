@@ -30,18 +30,20 @@ const getAboutPage = (nextState, callback) => {
 
 const getCounterPage = (nextState, callback) => {
   require.ensure([], function(require) {
-    const {page, reducer, stateKey, initialState} = require('./pages/CounterPage.js');
+    const {page, reducer, stateKey, initState} = require('./pages/CounterPage.js');
 
-    const state = store.getState();
-    store.reset(combineReducers({
-      ...store._reducers,
-      counter: reducer
-    }), {
-      ...state,
-      [stateKey]: initialState
+    initState().then((result) => {
+      const state = store.getState();
+      store.reset(combineReducers({
+        ...store._reducers,
+        counter: reducer
+      }), {
+        ...state,
+        [stateKey]: result
+      });
+
+      callback(null, page);
     });
-
-    callback(null, page);
   }, 'counter');
 };
 
