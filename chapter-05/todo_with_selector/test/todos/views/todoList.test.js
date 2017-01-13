@@ -1,6 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 
 import {reducer as todosReducer, actions} from '../../../src/todos/index.js';
 import {reducer as filterReducer} from '../../../src/filter/index.js';
@@ -9,8 +10,7 @@ import TodoList from '../../../src/todos/views/todoList.js';
 import TodoItem from '../../../src/todos/views/todoItem.js';
 
 describe('todos', () => {
-  it('should add new todo item on click add button', () => {
-    console.log('#', FilterTypes.ALL);
+  it('should add new todo-item on addTodo action', () => {
     const store = createStore(
       combineReducers({
         todos: todosReducer,
@@ -19,14 +19,16 @@ describe('todos', () => {
         todos: [],
         filter: FilterTypes.ALL
       });
-    const subject = <TodoList store={store} />;
+    const subject = (
+      <Provider store={store}>
+        <TodoList store={store} />
+      </Provider>
+    );
     const wrapper = mount(subject);
 
-    store.dispatch(actions.addTodo('test all'));
+    store.dispatch(actions.addTodo('write more test'));
 
-    console.log('#li', wrapper.find('.todo-item').text());
-    console.log('###', wrapper.find('.text').text());
-    expect(wrapper.find('.text').text()).toEqual('test all');
+    expect(wrapper.find('.text').text()).toEqual('write more test');
   });
 
 });
