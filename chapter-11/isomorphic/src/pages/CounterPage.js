@@ -12,8 +12,8 @@ const page = () => {
   );
 };
 
-const initialState = {
-  [caption]: 100
-}
+const initState = () => Promise.resolve({
+    [caption]: 100
+});
 
-export {page, reducer, initialState, stateKey};
+export {page, reducer, initState, stateKey};
