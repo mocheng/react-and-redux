@@ -10,6 +10,17 @@ const page = () => {
   );
 };
 
-const initState = () => Promise.resolve(100);
+const END_POINT = process.env.HOST_NAME || 'localhost:9000';
+
+const initState = () => {
+  return fetch(`http://${END_POINT}/api/count`).then(response => {
+    if (response.code !== 200) {
+      throw new Error('Fail to fetch count');
+    }
+    return response.json();
+  }).then(responseJson => {
+    return responseJson.count;
+  });
+}
 
 export {page, reducer, initState, stateKey};

@@ -10,6 +10,7 @@ import App from './pages/App.js';
 import {configureStore} from './Store.js';
 
 const store = configureStore();
+const win = global.window;
 
 /*
 const createElement = (Component, props) => {
@@ -36,12 +37,17 @@ const getAboutPage = (nextState, callback) => {
 const getCounterPage = (nextState, callback) => {
   require.ensure([], function(require) {
     const {page, reducer, stateKey, initState} = require('./pages/CounterPage.js');
+    const dehydratedState = (win && win.DEHYDRATED_STATE);
+    const state = store.getState();
+    const mergedState = {...dehydratedState, ...state};
+    const statePromise = mergedState[stateKey]
+      ? Promise.resolve(mergedState[stateKey])
+      : initState();
 
-    initState().then((result) => {
-      const state = store.getState();
+    statePromise.then((result) => {
       store.reset(combineReducers({
         ...store._reducers,
-        counter: reducer
+        [stateKey]: reducer
       }), {
         ...state,
         [stateKey]: result

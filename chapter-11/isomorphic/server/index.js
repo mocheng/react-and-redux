@@ -1,4 +1,5 @@
 require('babel-register');
+require('isomorphic-fetch');
 
 const isProductionMode = (process.env.NODE_ENV === 'production');
 const app = isProductionMode ? require('./app.prod.js'): require('./app.dev.js');
