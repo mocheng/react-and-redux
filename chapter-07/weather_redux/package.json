@@ -5,7 +5,9 @@
   "proxy": "http://www.weather.com.cn/",
   "devDependencies": {
     "react-scripts": "0.8.4",
-    "redux-immutable-state-invariant": "^1.2.4"
+    "redux-immutable-state-invariant": "^1.2.4",
+    "redux-mock-store": "^1.2.1",
+    "sinon": "^1.17.7"
   },
   "dependencies": {
     "react": "^15.4.1",
