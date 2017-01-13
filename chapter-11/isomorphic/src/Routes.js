@@ -1,5 +1,6 @@
 import React from 'react';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import ReactDOM from 'react-dom';
+import {Router, Route, IndexRoute, browserHistory, match} from 'react-router';
 import {Provider} from 'react-redux';
 import {combineReducers} from 'redux';
 
@@ -10,6 +11,7 @@ import {configureStore} from './Store.js';
 
 const store = configureStore();
 
+/*
 const createElement = (Component, props) => {
   return (
     <Provider store={store}>
@@ -17,6 +19,7 @@ const createElement = (Component, props) => {
     </Provider>
   );
 };
+*/
 
 const getHomePage = (nextState, callback) => {
   require.ensure([], function(require) {
@@ -68,13 +71,16 @@ const routes = (
   </Route>
 );
 
+export const renderRoutes = (domElement) => {
+  match({history, routes}, (err, redirectLocation, renderProps) => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <Router {...renderProps} />
+      </Provider>,
+      domElement
+    );
+  });
+}
 
-const Routes = () => (
-  <Router history={history} createElement={createElement}>
-    {routes}
-  </Router>
-);
-
-export default Routes;
 
 

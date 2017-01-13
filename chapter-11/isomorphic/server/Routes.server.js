@@ -5,7 +5,7 @@ import {combineReducers} from 'redux';
 
 import App from '../src/pages/App.js';
 import Home from '../src/pages/Home.js';
-import {page as CounterPage, reducer, stateKey, initialState} from '../src/pages/CounterPage.js';
+import {page as CounterPage, reducer, stateKey, initState} from '../src/pages/CounterPage.js';
 import About from '../src/pages/About.js';
 import NotFound from '../src/pages/NotFound.js';
 
@@ -25,18 +25,12 @@ const Routes = (
   </Router>
 );
 
-const routeInitialState = {
+export const pathInitData = {
   '/counter': {
-    [stateKey]: initialState
+    stateKey,
+    reducer,
+    initState
   }
 }
-
-const routeReducer = {
-  '/counter': {
-    [stateKey]: reducer
-  }
-}
-
-export {routeInitialState, routeReducer};
 
 export default Routes;
