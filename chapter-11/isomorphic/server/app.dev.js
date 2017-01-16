@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const requestHandler = require('./requestHandler.js');
+const renderPage = require('./routes.Server.js').renderPage;
 
 const webpack = require('webpack');
 const webpackConfig = require('../config/webpack.config.dev.js');
@@ -41,7 +41,7 @@ app.get('*', (req, res) => {
     assetManifest = getAssetManifest();
   }
 
-  return requestHandler(req, res, assetManifest);
+  return renderPage(req, res, assetManifest);
 });
 
 app.set('view engine', 'ejs');

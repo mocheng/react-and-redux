@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const requestHandler = require('./requestHandler.js');
+const renderPage = require('./routes.Server.js').renderPage;
 
 const app = express();
 
@@ -9,7 +9,7 @@ const assetManifest = require(path.resolve(__dirname, '../build/asset-manifest.j
 app.use(express.static(path.resolve(__dirname, '../build')));
 
 app.get('*', (req, res) => {
-  return requestHandler(req, res, assetManifest);
+  return renderPage(req, res, assetManifest);
 });
 
 app.set('view engine', 'ejs');
