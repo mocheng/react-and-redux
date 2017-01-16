@@ -22,12 +22,6 @@ const routes = (
   </Route>
 );
 
-const Routes = (
-  <Router history={browserHistory} >
-    {routes}
-  </Router>
-);
-
 const pathInitData = {
   '/counter': {
     stateKey,
