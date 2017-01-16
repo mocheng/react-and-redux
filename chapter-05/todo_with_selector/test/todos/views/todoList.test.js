@@ -21,7 +21,7 @@ describe('todos', () => {
       });
     const subject = (
       <Provider store={store}>
-        <TodoList store={store} />
+        <TodoList />
       </Provider>
     );
     const wrapper = mount(subject);
