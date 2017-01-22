@@ -19,8 +19,8 @@ const willEnter = () => {
   };
 };
 
-const TodoList = ({todos}) => {
-  const styles = todos.map(item => {
+const getStyles = (todos) => {
+  return todos.map(item => {
     return {
       key: item.id.toString(),
       data: item,
@@ -30,7 +30,11 @@ const TodoList = ({todos}) => {
       }
     };
   });
+}
 
+
+const TodoList = ({todos}) => {
+  const styles = getStyles(todos);
   return (
     <TransitionMotion
       willLeave={willLeave}
