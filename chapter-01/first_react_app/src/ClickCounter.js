@@ -22,7 +22,7 @@ class ClickCounter extends Component {
       <div style={counterStyle}>
         <button onClick={this.onClickButton}>Click Me</button>
         <div>
-        Click Count: {this.state.count}
+          Click Count: <span id="clickCount">{this.state.count}</span>
         </div>
       </div>
     );
