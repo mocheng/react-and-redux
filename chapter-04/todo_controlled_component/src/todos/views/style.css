@@ -35,6 +35,7 @@
 .todo-item {
   position: relative;
   height: 60px;
+  line-height: 50px;
   vertical-align: middle;
 }
 
