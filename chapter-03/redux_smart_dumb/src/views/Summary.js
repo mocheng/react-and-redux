@@ -4,9 +4,8 @@ import store from '../Store.js';
 
 class Summary extends Component {
   render() {
-    const sum = this.state.sum;
     return (
-      <div>Total Count: {sum}</div>
+      <div>Total Count: {this.props.sum}</div>
     );
   }
 }
@@ -54,13 +53,10 @@ class SummaryContainer extends Component {
   }
 
   render() {
-    const sum = this.state.sum;
     return (
-      <div>Total Count: {sum}</div>
+      <Summary sum={this.state.sum}></Summary>
     );
   }
 }
 
 export default SummaryContainer;
-
-
