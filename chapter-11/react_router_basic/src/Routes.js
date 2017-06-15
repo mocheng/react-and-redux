@@ -1,35 +1,34 @@
 import React from 'react';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {Route, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
-import {syncHistoryWithStore} from 'react-router-redux';
+//import {syncHistoryWithStore} from 'react-router-redux';
+import {ConnectedRouter} from 'react-router-redux';
+import createBrowserHistory from 'history/createBrowserHistory';
 
-import App from './pages/App.js';
+import {view as TopMenu} from './components/TopMenu';
+
+//import App from './pages/App.js';
 import Home from './pages/Home.js';
 import About from './pages/About.js';
 import NotFound from './pages/NotFound.js';
 import store from './Store.js';
 
-const createElement = (Component, props) => {
-  return (
-    <Provider store={store}>
-      <Component {...props} />
-    </Provider>
-  );
-};
-
-const history = syncHistoryWithStore(browserHistory, store);
-//const history = browserHistory;
+const history = createBrowserHistory();
 
 const Routes = () => (
-  <Router history={history} createElement={createElement}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Home} />
-      <Route path="home" component={Home} />
-      <Route path="about" component={About} />
-      <Route path="*" component={NotFound} />
-    </Route>
-  </Router>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div>
+        <TopMenu />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </div>
+    </ConnectedRouter>
+  </Provider>
 );
 
 export default Routes;
