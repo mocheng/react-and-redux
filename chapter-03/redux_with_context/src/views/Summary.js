@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 class Summary extends Component {
   render() {
-    const sum = this.state.sum;
+    const sum = this.props.sum;
     return (
       <div>Total Count: {sum}</div>
     );
@@ -54,7 +54,7 @@ class SummaryContainer extends Component {
   render() {
     const sum = this.state.sum;
     return (
-      <div>Total Count: {sum}</div>
+      <Summary sum={sum} />
     );
   }
 }
